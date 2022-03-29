@@ -44,7 +44,7 @@ export const initialData = {
               columnId: 'col-5',
               title: 'Title card 5',
               cover: null
-            },
+            }
           ]
         },
         {
@@ -87,7 +87,7 @@ export const initialData = {
               columnId: 'col-5',
               title: 'Title card 5',
               cover: null
-            },
+            }
           ]
         }
       ]

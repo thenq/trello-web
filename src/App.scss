@@ -9,7 +9,8 @@ body {
 
 .app-body {
   height: 100vh;
-  display: grid;
-  grid-template-rows: 40px 50px 1fr;
+  // display: grid;
+  overflow: hidden;
+  // grid-template-rows: 40px 50px 1fr;
   background-color: $board-bg-color;
 }

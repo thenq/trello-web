@@ -1,13 +1,11 @@
 @import './_setting.scss';
-
+$column-height: calc(#{$board-content-height} - 20px);
 
 .column {
   flex: 0 0 auto;
   width: 300px;
-  height: calc(100% - 10px);
-  &:not(:first-child) {
-    margin-left: 10px;
-  }
+  height: $column-height;
+  margin-left: 10px;
   > * {
     background-color: $list-bg-color;
     color: #333;
@@ -21,6 +19,7 @@
     font-weight: bold;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: pointer;
   }
   footer {
     padding-left: 10px;
@@ -30,10 +29,10 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
-  ul.card-list {
+  .card-list {
     list-style-type: none;
     margin: 0;
-    max-height: calc(100% - #{$column-header-height} - #{$column-footer-height});
+    max-height: calc(#{$column-height} - #{$column-header-height} - #{$column-footer-height});
     overflow-y: auto;
     overflow-x: none;
     &::-webkit-scrollbar {
@@ -48,4 +47,20 @@
     }
     
   }
+}
+
+.card-ghost {
+  transition: transform 0.18s ease;
+  transform: rotateZ(5deg)
+}
+
+.card-ghost-drop{
+  transition: transform 0.18s ease-in-out;
+  transform: rotateZ(0deg)
+}
+
+.cards-drop-preview {
+  background-color: rgba(150, 150, 200, 0.1);
+  border: 1px dashed #abc;
+  margin: 5px;
 }

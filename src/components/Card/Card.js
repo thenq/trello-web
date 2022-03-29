@@ -1,14 +1,21 @@
 import React from 'react'
-import { mapOrder } from '../../ultilities/sorts'
 
 import './Card.scss'
 
 function Task({ card }) {
   return (
-    <li className='card-item'>
-      {card.cover && <img src={card.cover} alt="Title" />}
+    <div className='card-item column-drag-handle-card'>
+      {
+        card.cover &&
+        <img
+          src={card.cover}
+          alt="Title"
+          className='card-cover'
+          onMouseDown={e => e.preventDefault()}
+        />
+      }
       Title: {card.title}
-    </li>
+    </div>
   )
 }
 
