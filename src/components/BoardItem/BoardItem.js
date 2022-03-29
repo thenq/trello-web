@@ -6,12 +6,9 @@ import './BoardItem.scss'
 import { mapOrder } from '../../ultilities/sorts'
 
 function BoardItem(props) {
-  const { column } = props
+  const { column, onCardDrop } = props
   const cards = mapOrder(column.cards, column.cardOrder, 'id')
 
-  const onCardDrop = (id, event) => {
-    console.log(id, event);
-  }
   return (
     <div className='column'>
       <header className='column-drag-handle'>{column.title}</header>
@@ -20,8 +17,8 @@ function BoardItem(props) {
           groupName="col"
           // onDragStart={e => console.log('drag started', e)}
           // onDragEnd={e => console.log('drag end', e)}
-          onDrop={e => onCardDrop(column.id, e)}
-          getChildPayload={index => cards[index] }
+          onDrop={dropResult => onCardDrop(column.id, dropResult)}
+          getChildPayload={index => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
           // onDragEnter={() => {
@@ -46,7 +43,11 @@ function BoardItem(props) {
           }
         </Container>
       </div>
-      <footer>Add another cards</footer>
+      <footer>
+        <div className='footer-actions'>
+          <i className='fa fa-plus icon'></i> Add another card
+        </div>
+      </footer>
     </div>
   )
 }
