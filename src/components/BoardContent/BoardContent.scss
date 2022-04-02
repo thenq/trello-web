@@ -18,17 +18,43 @@
 
   .add-new-column {
     width: 250px;
-    height: 32px;
+    max-width: 250px;
     line-height: 32px;
     padding: 4px 0 4px 15px;
     cursor: pointer;
     color: white;
-    margin-left: 10px;
+    margin: 0 10px;
     font-size: 14px;
     background-color: hsla(0, 0%, 100%, .24);
     border-radius: 4px;
     &:hover {
-    background-color: hsla(0, 0%, 100%, .34);
+      background-color: hsla(0, 0%, 100%, .34);
+    }
+  }
+  .create-new-column {
+    width: 250px;
+    max-width: 250px;
+    line-height: 32px;
+    padding: 4px 10px;
+    background-color: $column-bg-color;
+    margin: 0 10px;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+    input.input-create-new-column {
+      margin: 5px 0;
+    }
+    span.cancel-create-new {
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      i {
+        font-size: 20px;
+        color: $alert-danger;
+        &:hover {
+          color: darken($alert-danger, 10);
+        }
+      }
     }
   }
 }

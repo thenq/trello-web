@@ -15,7 +15,7 @@ export const initialData = {
               boardId: 'board-1',
               columnId: 'col-1',
               title: 'Title card 1',
-              cover: null
+              cover: 'assets/h3.jpg'
             },
             {
               id: 'card-2',
@@ -58,7 +58,7 @@ export const initialData = {
               boardId: 'board-1',
               columnId: 'col-1',
               title: 'Title card 1',
-              cover: 'assets/thenq.jpg'
+              cover: 'assets/h1.jpg'
             },
             {
               id: 'card-2',
@@ -101,7 +101,7 @@ export const initialData = {
               boardId: 'board-1',
               columnId: 'col-1',
               title: 'Title card 1',
-              cover: 'assets/thenq.jpg'
+              cover: 'assets/h2.jpg'
             },
             {
               id: 'card-2',

@@ -36,7 +36,7 @@ function BoardItem(props) {
           dropPlaceholderAnimationDuration={200}
         >
           {
-            cards.length && cards.map((card, index) =>
+            cards && cards.map((card, index) =>
               <Draggable key={index}>
                 <Card card={card} />
               </Draggable>)

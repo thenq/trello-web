@@ -7,7 +7,7 @@ $column-height: calc(#{$board-content-height} - 20px);
   height: $column-height;
   margin-left: 10px;
   > * {
-    background-color: $list-bg-color;
+    background-color: $column-bg-color;
     color: $app-main-text-color;
     padding: 0 8px;
   }
@@ -51,8 +51,8 @@ $column-height: calc(#{$board-content-height} - 20px);
       width: 11px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: darken($list-bg-color, 15);
-      border-right: 5px solid $list-bg-color;
+      background-color: darken($column-bg-color, 15);
+      border-right: 5px solid $column-bg-color;
     }
     
   }
