@@ -97,6 +97,25 @@ function BoardContent() {
     setOpenAddNew(false)
   }
 
+  const onUpdateColumn = (newColumnToUpdate) => {
+    const columnIdToUpdate = newColumnToUpdate.id
+    let newColumns = [...columns]
+    const columnIndexToUpdate = newColumns.findIndex(c => c.id === columnIdToUpdate)
+
+    if (newColumnToUpdate._destroy) {
+      newColumns.splice(columnIndexToUpdate, 1)
+    } else {
+      newColumns.splice(columnIndexToUpdate, 1, newColumnToUpdate)
+    }
+
+    let newBoard = { ...board }
+    newBoard.columnOrder = columns.map(c => c.id)
+    newBoard.columns = newColumns
+
+    setColumns(newColumns)
+    setBoard(newBoard)
+  }
+
   return (
     <div className='board-content'>
       <Container
@@ -113,7 +132,11 @@ function BoardContent() {
         {
           columns.map((column, index) =>
             <Draggable key={index}>
-              <BoardItem column={column} onCardDrop={onCardDrop} />
+              <BoardItem
+                column={column}
+                onCardDrop={onCardDrop}
+                onUpdateColumn={onUpdateColumn}
+              />
             </Draggable>
           )
         }
@@ -136,7 +159,7 @@ function BoardContent() {
                 ref={addNewColumnInputRef}
                 value={newColumnTitle}
                 onChange={onNewColumnTitleChange}
-                onKeyDown={e => (e.key === 'enter') && addNewColumn()}
+                onKeyDown={e => (e.key === 'Enter') && addNewColumn()}
               />
               <Button variant="success" size="sm" onClick={addNewColumn}>Add list</Button>
               <span className='cancel-create-new' onClick={toggleAddNewColumn}>

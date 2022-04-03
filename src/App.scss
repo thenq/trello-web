@@ -37,6 +37,18 @@ input[type=number]:focus,
   // box-shadow: inset 0 -1px 0 #ddd;
 }
 .btn:focus, .btn:active {
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.trello-content-editable {
+  background-color: inherit;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  &:focus {
+    background-color: white;
+    border: 1px solid $input-border-color;
+  }
 }

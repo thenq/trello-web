@@ -43,6 +43,9 @@
     outline: none;
     input.input-create-new-column {
       margin: 5px 0;
+      &:focus {
+        border: 1px solid $input-border-color;
+      }
     }
     span.cancel-create-new {
       margin: 10px;
