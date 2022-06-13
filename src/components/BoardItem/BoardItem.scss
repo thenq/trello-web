@@ -38,7 +38,7 @@ $column-height: calc(#{$board-content-height} - 20px);
         margin-top: -10px;
         &:hover {
           background-color: darken($column-bg-color, 10);
-        border-color: darken($column-bg-color, 10);
+          border-color: darken($column-bg-color, 10);
         }
         &:after {
           content: '...';
@@ -92,7 +92,6 @@ $column-height: calc(#{$board-content-height} - 20px);
       background-color: darken($column-bg-color, 15);
       border-right: 5px solid $column-bg-color;
     }
-    
   }
 }
 
@@ -102,7 +101,7 @@ $column-height: calc(#{$board-content-height} - 20px);
   font-weight: bold;
 }
 
-.card-ghost-drop{
+.card-ghost-drop {
   transition: transform 0.18s ease-in-out;
   transform: rotateZ(0deg);
   font-weight: bold;
@@ -112,4 +111,40 @@ $column-height: calc(#{$board-content-height} - 20px);
   background-color: rgba(150, 150, 200, 0.1);
   border: 1px dashed #abc;
   margin: 5px;
+}
+
+.create-new-card-input {
+  .input-create-new-card {
+    min-height: 54px;
+    max-height: 162px;
+  }
+}
+
+.create-new-card-actions {
+  width: 250px;
+  max-width: 250px;
+  line-height: 32px;
+  background-color: $column-bg-color;
+  padding-top: 5px;
+  border-radius: 4px;
+  box-shadow: none;
+  outline: none;
+  input.input-create-new-column {
+    margin: 5px 0;
+    &:focus {
+      border: 1px solid $input-border-color;
+    }
+  }
+  span.cancel-create-new {
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    i {
+      font-size: 20px;
+      color: $alert-danger;
+      &:hover {
+        color: darken($alert-danger, 10);
+      }
+    }
+  }
 }

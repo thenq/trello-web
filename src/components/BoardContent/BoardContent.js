@@ -4,15 +4,9 @@ import { Container, Draggable } from 'react-smooth-dnd'
 
 import BoardItem from '../BoardItem/BoardItem'
 import './BoardContent.scss'
-import { mapOrder } from '../../ultilities/sorts'
-import { applyDrag } from '../../ultilities/dragDrop'
-import {
-  Container as BSContainer,
-  Row,
-  Col,
-  Form,
-  Button
-} from 'react-bootstrap'
+import { mapOrder } from '../../utilities/sorts'
+import { applyDrag } from '../../utilities/dragDrop'
+import { Container as BSContainer, Row, Col, Form, Button } from 'react-bootstrap'
 
 import { initialData } from '../../actions/initialData'
 
@@ -26,7 +20,7 @@ function BoardContent() {
   const onNewColumnTitleChange = useCallback((e) => setNewColumnTitle(e.target.value), [])
 
   useEffect(() => {
-    const boardFromDB = initialData.boards.find(board => board.id === 'board-1')
+    const boardFromDB = initialData.boards.find((board) => board.id === 'board-1')
     if (boardFromDB) {
       setBoard(boardFromDB)
 
@@ -41,9 +35,8 @@ function BoardContent() {
     }
   }, [isOpenAddNew])
 
-
   if (isEmpty(board)) {
-    return <div className='board-not-found'>Board Not Found!</div>
+    return <div className="board-not-found">Board Not Found!</div>
   }
 
   const onColumnDrop = (dropResult) => {
@@ -51,7 +44,7 @@ function BoardContent() {
     newColumns = applyDrag(newColumns, dropResult)
 
     let newBoard = { ...board }
-    newBoard.columnOrder = columns.map(c => c.id)
+    newBoard.columnOrder = columns.map((c) => c.id)
     newBoard.columns = newColumns
 
     setColumns(newColumns)
@@ -61,9 +54,9 @@ function BoardContent() {
   const onCardDrop = (columnId, dropResult) => {
     if (dropResult.addedIndex !== null || dropResult.removedIndex !== null) {
       let newColumns = [...columns]
-      let currentColumn = newColumns.find(column => column.id === columnId)
+      let currentColumn = newColumns.find((column) => column.id === columnId)
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult)
-      currentColumn.cardOrder = currentColumn.cards.map(card => card.id)
+      currentColumn.cardOrder = currentColumn.cards.map((card) => card.id)
 
       setColumns(newColumns)
     }
@@ -77,7 +70,7 @@ function BoardContent() {
     }
 
     const newColumnToAdd = {
-      id: Math.random().toString(36).substring(2, 5), // Random charactors
+      id: Math.random().toString(36).substring(2, 5), // Random characters
       boardId: board.id,
       title: newColumnTitle.trim(),
       cardOrder: [],
@@ -89,7 +82,7 @@ function BoardContent() {
     setColumns(newColumns)
 
     const newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map(c => c.id)
+    newBoard.columnOrder = newColumns.map((c) => c.id)
     newBoard.columns = newColumns
     setBoard(newBoard)
 
@@ -100,7 +93,7 @@ function BoardContent() {
   const onUpdateColumn = (newColumnToUpdate) => {
     const columnIdToUpdate = newColumnToUpdate.id
     let newColumns = [...columns]
-    const columnIndexToUpdate = newColumns.findIndex(c => c.id === columnIdToUpdate)
+    const columnIndexToUpdate = newColumns.findIndex((c) => c.id === columnIdToUpdate)
 
     if (newColumnToUpdate._destroy) {
       newColumns.splice(columnIndexToUpdate, 1)
@@ -109,7 +102,7 @@ function BoardContent() {
     }
 
     let newBoard = { ...board }
-    newBoard.columnOrder = columns.map(c => c.id)
+    newBoard.columnOrder = columns.map((c) => c.id)
     newBoard.columns = newColumns
 
     setColumns(newColumns)
@@ -117,11 +110,11 @@ function BoardContent() {
   }
 
   return (
-    <div className='board-content'>
+    <div className="board-content">
       <Container
         orientation="horizontal"
         onDrop={onColumnDrop}
-        getChildPayload={index => columns[index]}
+        getChildPayload={(index) => columns[index]}
         dragHandleSelector=".column-drag-handle"
         dropPlaceholder={{
           animationDuration: 150,
@@ -129,44 +122,42 @@ function BoardContent() {
           className: 'column-drop-preview'
         }}
       >
-        {
-          columns.map((column, index) =>
-            <Draggable key={index}>
-              <BoardItem
-                column={column}
-                onCardDrop={onCardDrop}
-                onUpdateColumn={onUpdateColumn}
-              />
-            </Draggable>
-          )
-        }
+        {columns.map((column, index) => (
+          <Draggable key={index}>
+            <BoardItem column={column} onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} />
+          </Draggable>
+        ))}
       </Container>
       <BSContainer style={{ margin: '0 10px', padding: 0 }}>
-        {!isOpenAddNew &&
+        {!isOpenAddNew && (
           <Row>
-            <Col className='add-new-column' onClick={toggleAddNewColumn}>
-              <i className='fa fa-plus icon'></i> Add another column
+            <Col className="add-new-column" onClick={toggleAddNewColumn}>
+              <i className="fa fa-plus icon"></i> Add another column
             </Col>
-          </Row>}
-        {isOpenAddNew &&
+          </Row>
+        )}
+        {isOpenAddNew && (
           <Row>
-            <Col className='create-new-column'>
+            <Col className="create-new-column">
               <Form.Control
                 size="sm"
                 type="text"
                 placeholder="Enter column title..."
-                className='input-create-new-column'
+                className="input-create-new-column"
                 ref={addNewColumnInputRef}
                 value={newColumnTitle}
                 onChange={onNewColumnTitleChange}
-                onKeyDown={e => (e.key === 'Enter') && addNewColumn()}
+                onKeyDown={(e) => e.key === 'Enter' && addNewColumn()}
               />
-              <Button variant="success" size="sm" onClick={addNewColumn}>Add list</Button>
-              <span className='cancel-create-new' onClick={toggleAddNewColumn}>
-                <i className='fa fa-trash icon'></i>
+              <Button variant="success" size="sm" onClick={addNewColumn}>
+                Add list
+              </Button>
+              <span className="delete-icon" onClick={toggleAddNewColumn}>
+                <i className="fa fa-trash icon"></i>
               </span>
             </Col>
-          </Row>}
+          </Row>
+        )}
       </BSContainer>
     </div>
   )

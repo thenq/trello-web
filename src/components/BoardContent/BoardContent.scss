@@ -25,10 +25,10 @@
     color: white;
     margin: 0 10px;
     font-size: 14px;
-    background-color: hsla(0, 0%, 100%, .24);
+    background-color: hsla(0, 0%, 100%, 0.24);
     border-radius: 4px;
     &:hover {
-      background-color: hsla(0, 0%, 100%, .34);
+      background-color: hsla(0, 0%, 100%, 0.34);
     }
   }
   .create-new-column {
@@ -45,18 +45,6 @@
       margin: 5px 0;
       &:focus {
         border: 1px solid $input-border-color;
-      }
-    }
-    span.cancel-create-new {
-      margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      i {
-        font-size: 20px;
-        color: $alert-danger;
-        &:hover {
-          color: darken($alert-danger, 10);
-        }
       }
     }
   }

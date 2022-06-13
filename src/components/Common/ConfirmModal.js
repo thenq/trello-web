@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 import {
   MODAL_ACTION_CLOSE,
   MODAL_ACTION_SAVE
-} from 'ultilities/constants'
+} from 'utilities/constants'
 
 export default function ConfirmModal(props) {
   const { title, content, show, onAction } = props
